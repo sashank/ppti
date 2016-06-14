@@ -1,0 +1,977 @@
+Return-Path: <noreply@r.groupon.com>
+X-Original-To: isq_released_ham@prod-corpus-mga.soma.ironport.com
+Delivered-To: isq_released_ham@prod-corpus-mga.soma.ironport.com
+Received: from prod-corpus-smtp1.soma.ironport.com
+	(prod-corpus-smtp1.soma.ironport.com [192.168.33.86])
+	by blade127.soma.ironport.com (Postfix) with ESMTP id 3F3133F427
+	for <isq_released_ham@prod-corpus-mga.soma.ironport.com>;
+	Wed,  2 Jan 2013 13:11:07 -0800 (PST)
+X-Cloudmark-SP-Filtered: true
+X-Cloudmark-SP-Result: v=1.1 cv=EV3HfhKNOty24d8O4U0QpiWac8lsnNUwSsJqgd3iroc=
+	c=1 sm=1
+	a=2hMSeKISgp0A:10 a=20v213CoRfEA:10 a=x0/Kr43TL6Fw7uKclKYqUA==:17
+	a=7sb9TictAAAA:8 a=etWmM9d1AAAA:8 a=v1zefUw4wq6CSIVO_EMA:9
+	a=QEXdDO2ut3YA:10 a=bNCygJyWRNMA:10 a=2SAKe46Czp-ABBpm:21
+	a=DKSSL8xzA98vczk-:21 a=O3u8Znk_AAAA:8 a=JqEG_dyiAAAA:8
+	a=3j4BkbkPAAAA:8
+	a=eiGYX0nFpfAAR75LHi8A:9 a=_W_S_7VecoQA:10 a=tXsnliwV7b4A:10
+	a=duB7nqQtzrT6KjvV:21 a=33TgcnzekTu6gQ0a:21 a=vwksewj00Hid-6Jc:21
+	a=HpAAvcLHHh0Zw7uRqdWCyQ==:117
+X-Corpus-Cloudmark-SP-Score: 0L
+X-Corpus-Cloudmark-SP-Category: Undefined/Undefined
+X-IPAS-Clear-Result: REMOVE
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: ArMGAOuh5FAyc9LyZGdsb2JhbABFgX9KD4I6gSizCYQAFgEaCwsGFYJPIAoTBggsBjkEBAcEAQkCAjE0BwQBHASHcgynS3ArgyWLGQaMYgkHc4IigROSXI5tgW6GFIFqBxeBHwI
+X-Corpus-CASE-Score: 2.0
+X-IronPort-AV: E=McAfee;i="5400,1158,6943"; a="147679935"
+X-IronPort-AV: E=Sophos;i="4.84,398,1355126400"; 
+	d="scan'208,217";a="147679935"
+Received: from blade124.soma.ironport.com ([192.168.42.147])
+	by prod-corpus-mga.soma.ironport.com with ESMTP;
+	02 Jan 2013 13:11:05 -0800
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	blade124.soma.ironport.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_60,DKIM_SIGNED,
+	HTML_IMAGE_RATIO_08, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_RP_CERTIFIED, 
+	RCVD_IN_RP_SAFE,RDNS_NONE,SPF_PASS,T_DKIM_INVALID,WHISKEY_DONTUSE
+	autolearn=disabled version=3.3.2
+X-Spam-Scandate: Wed, 02 Jan 2013 13:11:05 -0800
+X-Spam-Languages: en
+X-Spam-Relays-Trusted: 
+X-Spam-Relays-Untrusted: [ ip=50.115.210.242 rdns= helo=mta75s1.r.groupon.com
+	by=mx5.manitoba-ehealth.ca ident= envfrom= intl=0 id=
+	auth= msa=0 ]
+X-Spam-Bayesian: 0.6633
+X-Spam-Sender-IP: 50.115.210.242
+X-Spam-Fuzzy-Composite: ver="9"
+	hash="3ab91887cb26e45304b23387c27b6a3c466305c2879ae2279d01fb8fabd29469346a943eef36891c5e30c969e5f08c720734e32f6498cc4d00f4"
+X-Spam-Suspected-Date: 1357151278
+X-attachment: None
+X-IronPort-AV: E=Sophos;i="4.84,397,1355119200"; 
+	d="scan'208,217";a="113184653"
+Received-SPF: None identity=helo; client-ip=50.115.210.242;
+	receiver=mx5.manitoba-ehealth.ca;
+	envelope-from="6qfAX7UaJkm0Cu+gMuYNRTBCLzE0LTMxMzkzLUUyQzc0RTA1@bounce.r.groupon.com";
+	x-sender="postmaster@mta75s1.r.groupon.com";
+	x-conformance=sidf_compatible
+Received-SPF: Pass identity=mailfrom; client-ip=50.115.210.242;
+	receiver=mx5.manitoba-ehealth.ca;
+	envelope-from="6qfAX7UaJkm0Cu+gMuYNRTBCLzE0LTMxMzkzLUUyQzc0RTA1@bounce.r.groupon.com";
+	x-sender="6qfAX7UaJkm0Cu+gMuYNRTBCLzE0LTMxMzkzLUUyQzc0RTA1@bounce.r.groupon.com";
+	x-conformance=sidf_compatible; x-record-type="v=spf1"
+Received-SPF: None identity=pra; client-ip=50.115.210.242;
+	receiver=mx5.manitoba-ehealth.ca;
+	envelope-from="6qfAX7UaJkm0Cu+gMuYNRTBCLzE0LTMxMzkzLUUyQzc0RTA1@bounce.r.groupon.com";
+	x-sender="noreply@r.groupon.com"; x-conformance=sidf_compatible
+Received: from mta75s1.r.groupon.com ([50.115.210.242])
+	by mx5.manitoba-ehealth.ca with ESMTP; 02 Jan 2013 12:27:58 -0600
+DKIM-Signature: v=1; a=rsa-sha1; d=r.groupon.com; s=s768; c=relaxed/simple;
+	q=dns/txt; i=@r.groupon.com; t=1357151278;
+	h=From:Subject:Date:To:MIME-Version:Content-Type:List-Unsubscribe;
+	bh=mUc+OH72yzziQY2JmIGA4qnNFaI=;
+	b=j0VrIoS7n4OR8EpjDoBC13sSdNSGmoEGpaHZ1jXK+NCWGMezCbLmzo1FH8pxugJ8
+	5qjwTWwsgflSHT+71at66O/1Hy0wFJWy1Pqn1+LM9Ub8wJsM4XfYEjo61+r/an90;
+X-MSFBL: aWhhcmtuZXNzQG1hbml0b2JhLWVoZWFsdGguY2FANTAuMTE1LjIxMC4yNDJAY29t
+	bWVyY2lhbEA=
+Date: Wed, 2 Jan 2013 18:27:58 +0000 (UTC)
+From: Groupon Goods <noreply@r.groupon.com>
+To: iharkness@manitoba-ehealth.ca
+Message-ID: <1500390341.265484632.1357151278276.JavaMail.rocketman@rocketman2.snc1>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_265484325_607795869.1357151278087"
+X-RM-SendId: d3af3f52-c8cb-40b4-bda2-d68f165bec7f
+X-RM-EmailName: channel-goods_central_20130102_treatment_892
+X-RM-UserHash: 1ec2b043b669a94506bfbb1a5439cec0185663ea7165cb935e22cbd2511f7647
+X-MSFBL: aWhhcmtuZXNzQG1hbml0b2JhLWVoZWFsdGguY2FAcm1Acm1AY2hhbm5lbC1nb29kc19jZW50cmFsXzIwMTMwMTAyX3RyZWF0bWVudF84OTJAZDNhZjNmNTItYzhjYi00MGI0LWJkYTItZDY4ZjE2NWJlYzdm
+List-Unsubscribe: <mailto:6qfAX7UaJkm0Cu+gMuYNRTBCLzE0LTMxMzkzLUUyQzc0RTA1@unsub.r.groupon.com&subject=channel-goods_central_20130102_treatment_892>
+X-Corpus-Original-Sender: isq_released_0019B9B33EC0-787VPC1@access.ironport.com
+Subject: 82% Off Teeth-Whitening Kit,
+	400-TC Egyptian-Cotton Sheets, Timex Calculator Watch & More
+X-ClamAV-Status: No
+X-ClamAV-Timestamp: 1357161065
+X-Corpus-Add-Timestamp: 1357161061
+X-Corpus-Source: isq_released_ham
+X-Corpus-Sender-IP: 50.115.210.242
+X-Corpus-Suspected-Date: 1357161061
+X-SBRS-Status: scanned
+X-SBRS-Result: |0=0.0|1=0.0|2=0.5631|3=0.5|4=846451442|5=2342153281242988544|6=NA|7=AvNCmNDhNIaMTrN|
+X-SBRS-Timestamp: 1357161065
+X-SenderBase-Status: 0-0=1|1=Groupon|2=5.9|3=6.3|4=5790190|6=1299603580|8=4940|9=42|20=mta75s1.r.|21=groupon.com|22=Y|23=6.1|24=6.3|25=1252624088|40=4.4|41=4.7|43=4.0|44=0.27|45=N|46=20|48=24|49=1.00|50=Chicago|51=IL|52=60654|53=US|54=-87.6368|55=41.8876
+X-SenderBase-Timestamp: 1357161065
+X-IPAS-Original-Result: Av1nANB75FAyc9LyhWdsb2JhbABFgXQIA0oPgjqBKLMIg38WDgEBAQoLCwUWJ4IoIAoTBggsBjkEBAcEAQkCAjE0BwQBHASHcgynNHArgyWNEAaMYgkHc4IigROSXI5tgW6GFIFqBxeBHwI
+X-Corpus-ID: 549204176
+
+------=_Part_265484325_607795869.1357151278087
+Content-Type: multipart/related; 
+	boundary="----=_Part_265484326_1792945151.1357151278087"
+
+------=_Part_265484326_1792945151.1357151278087
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_265484327_538618153.1357151278087"
+
+------=_Part_265484327_538618153.1357151278087
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Groupon Goods
+
+View all Goods deals
+http://www.groupon.com/goods
+
+
+
+Premium Home Teeth-Whitening Kit
+
+Home teeth-whitening kit comes with carbamide-peroxide gel, mini LED light,=
+ and custom-moulded thermoform trays
+
+
+Value: C$160
+Price: C$29
+
+(82% off)
+
+View This Deal
+http://www.groupon.com/deals/gg-ca-premium-home-whitening-kit?
+
+-----------------------------------
+
+
+
+400-Thread-Count Egyptian-Cotton Sheets
+400-thread-count egyptian-cotton sheets wick away moisture and preserve war=
+mth=20
+
+Value: C$90
+Price: C$39
+
+(57% off)
+
+View
+http://www.groupon.com/deals/gg-ca-egyptian-cotton-sheet-sets?
+
+
+
+Timex Unisex Retro Calculator Watch
+LCD screen; time-zone, calculator, and alarm functions
+
+Value: C$80
+Price: C$25
+
+(69% off)
+
+View
+http://www.groupon.com/deals/gg-ca-timex-retro-calculator-watch?
+
+
+
+Veho Muvi HD Action Sports Camcorder Bundle
+Capture hands-free POV shots with a helmet mount and water-resistant case; =
+an 8GB microSD card stores around 80 minutes of 1080p footage
+
+Value: C$280
+Price: C$159
+
+(43% off)
+
+View
+http://www.groupon.com/deals/gg-ca-veho-muvi-hd-no-proof-no-glory-bundle?
+
+
+
+Portable Blood-Pressure Monitor
+An automatic blood-pressure monitor clasps around upper arms to measure rea=
+dings; internal memory stores up to 60 readings
+
+Value: C$125
+Price: C$39
+
+(69% off)
+
+View
+http://www.groupon.com/deals/gg-ca-blood-pressure-monitor?
+
+
+
+Set of 10 Preschool Prep DVDs
+DVDs use sight-recognition techniques to help kids aged 9 months to 7 years=
+ understand concepts such as numbers, letters, and colours
+
+Value: C$130
+Price: C$44
+
+(66% off)
+
+View
+http://www.groupon.com/deals/gg-ca-set-of-10-preschool-prep-dvds?
+
+
+
+10 Children's Questions Books
+Illustrated, educational 10-book sets answer some of kids common questions =
+about animals, science, and history
+
+Value: C$89
+Price: C$29
+
+(67% off)
+
+View
+http://www.groupon.com/deals/gg-ca-first-questions-book-bundles?
+
+
+-----------------------------------
+
+
+View all Goods deals
+http://www.groupon.com/goods?
+
+-----------------------------------
+
+You are receiving this email because iharkness@manitoba-ehealth.ca is signe=
+d up to receive Groupon communications. If you wish to unsubscribe from fut=
+ure Groupon Goods emails, you can always unsubscribe with one click.
+http://www.groupon.com/unsubscribe?
+
+If you'd like to modify your other email subscriptions, click here to acces=
+s your subscription center.
+https://www.groupon.com/subscription_center/1ec2b043b669a94506bfbb1a5439cec=
+0185663ea7165cb935e22cbd2511f7647?mobile=3Dfalse&
+
+Please don't reply to this email=E2=80=94there are better ways to get in to=
+uch with us, like renting the billboard outside our office or emailing cust=
+omer service here.
+http://www.groupon.com/helpcenter?touchpage=3Dfalse&
+
+If you are interested in working with Groupon Goods, go here for more infor=
+mation.
+https://www.grouponworks.com/get-featured?
+
+To purchase a deal listed in this e-mail, click the button next to that dea=
+l (e.g., "View This Deal" or "Details") to visit the page on the Groupon we=
+bsite where the deal is available for purchase. Then, click the "Buy!" butt=
+on on that page and follow the instructions provided. Once you complete the=
+ purchase, you'll receive an e-mail confirmation containing a link to the p=
+age on the Groupon website where you can review your order details and trac=
+k your package from your Groupon account. View our Privacy Statement.
+http://www.groupon.com/privacy?
+
+------=_Part_265484327_538618153.1357151278087
+Content-Type: text/html;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html> <head> <title>Groupon | Wednesday, January 2, 2013</title> <meta htt=
+p-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/> </head> <=
+body style=3D"height:100%; margin:0!important; padding:0!important;-webkit-=
+text-size-adjust:none;"> <table cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"font-family: Arial, Helvetica, sans-serif; font-size:14px; line-height:=
+19px; color:#333; width:100%; background: #ffffff;" align=3D"center" valign=
+=3D"top"> <tr> <td align=3D"center" style=3D"font-size:10px; line-height:12=
+px; padding:5px 0px 5px 0px;">Look for more Goods deals to arrive in your i=
+nbox every week. <br />Remember that you can <a href=3D"http://www.groupon.=
+com/subscription_center/1ec2b043b669a94506bfbb1a5439cec0185663ea7165cb935e2=
+2cbd2511f7647/unsubscribe?from=3Dgoods&utm_source=3Dchannel_goods-deals&utm=
+_medium=3Demail&sid=3Dd3af3f52-c8cb-40b4-bda2-d68f165bec7f&division=3Dwinni=
+peg&user=3D1ec2b043b669a94506bfbb1a5439cec0185663ea7165cb935e22cbd2511f7647=
+&date=3D20130102&s=3Dheader&c=3Dlink&d=3Dgoods_unsub" style=3D"text-decorat=
+ion:none;color:#2077ac;" title=3D"Unsubscribe" target=3D"_blank">unsubscrib=
+e</a> from future Goods emails at any time.<img src =3D "http://www.groupon=
+...com/analytic/track.gif?p=3D1&utm_source=3Dchannel_goods-deals&utm_medium=
+=3Demail&sid=3Dd3af3f52-c8cb-40b4-bda2-d68f165bec7f&division=3Dwinnipeg&use=
+r=3D1ec2b043b669a94506bfbb1a5439cec0185663ea7165cb935e22cbd2511f7647&date=
+=3D20130102" height=3D"1" width=3D"1" /></td> </tr> </table> <table cellpad=
+ding=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans-s=
+erif; font-size:14px; line-height:19px; color:#333; width:100%; background:=
+ #89b556;" align=3D"center" valign=3D"top"> <tr> <td style=3D"width: 33%; b=
+ackground: #333;" valign=3D"top">&nbsp;</td> <td style=3D"width: 33%; backg=
+round: #333;" align=3D"center" valign=3D"top"> <table cellpadding=3D"0" cel=
+lspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans-serif; font-siz=
+e:14px; line-height:19px; color:#333; width:600px; height: 100%;" align=3D"=
+center" valign=3D"top"> <tr> <td style=3D"width: 134px; background: #333;" =
+width=3D"134" align=3D"left" valign=3D"top"><a href=3D"http://www.groupon.c=
+om/goods?utm_source=3Dchannel_goods-deals&utm_medium=3Demail&sid=3Dd3af3f52=
+-c8cb-40b4-bda2-d68f165bec7f&division=3Dwinnipeg&user=3D1ec2b043b669a94506b=
+fbb1a5439cec0185663ea7165cb935e22cbd2511f7647&date=3D20130102&s=3Dheader&c=
+=3Dgroupon-logo_img&d=3Dall-deals-page" style=3D"color:#0185C6; text-decora=
+tion:none; font-size:18px; font-weight:bold; color:#FFFFFF;" title=3D"Group=
+on Goods" target=3D"_blank"> <img src=3D"http://s3.grouponcdn.com/email/ima=
+ges/Goods/logo-groupon-goods.gif" width=3D"212" height=3D"35" style=3D"disp=
+lay: block; border: none;" alt=3D"Groupon Goods" title=3D"Groupon Goods"></=
+a></td> <td valign=3D"top" align=3D"right" style=3D"padding: 10px 0 0 0;"><=
+a href=3D"http://www.groupon.com/goods?utm_source=3Dchannel_goods-deals&utm=
+_medium=3Demail&sid=3Dd3af3f52-c8cb-40b4-bda2-d68f165bec7f&division=3Dwinni=
+peg&user=3D1ec2b043b669a94506bfbb1a5439cec0185663ea7165cb935e22cbd2511f7647=
+&date=3D20130102&s=3Dheader&c=3Dlink&d=3Dgoods_deals" style=3D"color: #4bc1=
+de; text-decoration:none; font-weight: bold; -webkit-text-size-adjust:none;=
+" target=3D"_blank">View all Goods deals</a></td> </tr> </table> </td> <td =
+style=3D"width: 33%; background: #333;" valign=3D"top">&nbsp;</td> </tr> <t=
+r> <td colspan=3D"3" style=3D"background: #4bc1de; height:4px; line-height:=
+0px;" valign=3D"top" height=3D"3"><img src=3D"http://s3.grouponcdn.com/emai=
+l/images/spacer.gif" style=3D"display:block;" border=3D"0" width=3D"1" heig=
+ht=3D"4" /></td> </tr> <tr> <td style=3D"width: 33%">&nbsp;</td> <td align=
+=3D"center" style=3D"height: 25px; background-repeat:no-repeat; background-=
+position:top center;" background=3D"http://s3.grouponcdn.com/email/images/g=
+lobal_images/green_starburst_w660.jpg" valign=3D"top" bgcolor=3D"#89b556"> =
+</td> <td style=3D"width: 33%; height: 25px;">&nbsp;</td> </tr> <tr> <td st=
+yle=3D"width: 33%;">&nbsp;</td> <td style=3D"width: 33%; background: #89b55=
+6;" align=3D"center"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D'f=
+ont-family: Arial, Helvetica, sans-serif; font-size:14px; line-height:19px;=
+ color:#333; width:100%;' align=3D"center"> <tr> <td> <table cellpadding=3D=
+"0" cellspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans-serif; f=
+ont-size:14px; line-height:19px; color:#333; width:600px; border-bottom: 2p=
+x solid #89b556;" align=3D"center"> <tr> <td> <table cellpadding=3D"0" cell=
+spacing=3D"0" style=3D"-moz-border-radius: 6px 6px 0 0; -webkit-border-radi=
+us: 6px 6px 0 0; border-radius: 6px 6px 0 0; -khtml-border-radius: 6px 6px =
+0 0; font-family: Arial, Helvetica, sans-serif; font-size:14px; line-height=
+:19px; color:#333; width:100%; background: #fff;" align=3D"center"> <!-- In=
+centive Messaging --> <!-- /Incentive Messaging --> <tr> <td style=3D"paddi=
+ng:20px 20px 20px 20px;" valign=3D"top" align=3D"center"> <table cellpaddin=
+g=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans-seri=
+f; font-size:14px; line-height:19px; color:#333; width:100%;" align=3D"cent=
+er" valign=3D"top"> <tr> <td align=3D"left" valign=3D"top" style=3D"padding=
+: 0px 0px 20px 0px;"><a target=3D"_blank" style=3D"font-size:14px; font-wei=
+ght:bold; color:#0792bd; text-decoration:none; text-align:center;" href=3D"=
+http://www.groupon.com/deals/gg-ca-premium-home-whitening-kit?p=3D1&utm_sou=
+rce=3Dchannel_goods-deals&utm_medium=3Demail&sid=3Dd3af3f52-c8cb-40b4-bda2-=
+d68f165bec7f&division=3Dwinnipeg&user=3D1ec2b043b669a94506bfbb1a5439cec0185=
+663ea7165cb935e22cbd2511f7647&date=3D20130102&s=3Dbody&c=3Ddeal_img&d=3Ddea=
+l-page" title=3D"Premium Home Teeth-Whitening Kit" target=3D"_blank"><img s=
+rc=3D"https://s3.grouponcdn.com/images/site_images/2894/4160/RackMultipart2=
+0121227-15401-13r9txu_grid_6.jpg" style=3D"display: block; border: none;" a=
+lt=3D"Premium Home Teeth-Whitening Kit" title=3D"Premium Home Teeth-Whiteni=
+ng Kit" width=3D"340" height=3D"220"></a></td> <td align=3D"right" valign=
+=3D"top" style=3D"padding: 0 0 20px 20px; width:100%;"> <table cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"{table_styles} text-align:left; line-heig=
+ht: 18px;" valign=3D"top" align=3D"left"> <tr> <td valign=3D"top" align=3D"=
+left" style=3D"font-weight:bold; font-family: Arial, Helvetica, sans-serif;=
+-webkit-text-size-adjust:none;"><a target=3D"_blank" style=3D"text-decorati=
+on: none; font-size: 18px; color: #000;" href=3D"http://www.groupon.com/dea=
+ls/gg-ca-premium-home-whitening-kit?p=3D1&utm_source=3Dchannel_goods-deals&=
+utm_medium=3Demail&sid=3Dd3af3f52-c8cb-40b4-bda2-d68f165bec7f&division=3Dwi=
+nnipeg&user=3D1ec2b043b669a94506bfbb1a5439cec0185663ea7165cb935e22cbd2511f7=
+647&date=3D20130102&s=3Dbody&c=3Ddeal_img&d=3Ddeal-page" target=3D"_blank">=
+Premium Home Teeth-Whitening Kit</a></td> </tr> <tr> <td style=3D"padding: =
+5px 0 0 0; font-size: 12px; text-align: left; font-family: Arial, Helvetica=
+, sans-serif; -webkit-text-size-adjust:none; line-height:18px">Home teeth-w=
+hitening kit comes with carbamide-peroxide gel, mini LED light, and custom-=
+moulded thermoform trays </td> </tr> <tr> <td style=3D"padding:10px 0 0px 0=
+;" valign=3D"top"> <table width=3D"196" cellpadding=3D"0" cellspacing=3D"0"=
+ style=3D"font-family: Arial, Helvetica, sans-serif; font-size:14px; line-h=
+eight:19px; color:#333; background:#fffedd; border: 1px solid #f1ea9a;"> <t=
+r> <td style=3D"padding: 5px 0 0 0;" align=3D"center"> <table cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans-serif=
+; font-size:14px; line-height:19px; color:#333; width:150px;" align=3D"cent=
+er"> <tr> <td align=3D"left" style=3D"text-decoration: line-through; -webki=
+t-text-size-adjust:none;">C$160</td> <td align=3D"center" style=3D"padding:=
+ 0 0 0 10px; color: #cc2127; font-weight: bold; font-size: 16px; -webkit-te=
+xt-size-adjust:none;">C$29</td> <td align=3D"right" style=3D"color: #cc2127=
+; -webkit-text-size-adjust:none;">(82%&nbsp;off)</td> </tr> </table> <table=
+ cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, Helvetica=
+, sans-serif; font-size:14px; line-height:19px; color:#333; width:190px;"> =
+<tr> <td style=3D"padding: 10px 0 15px 0;" align=3D"center"> <table cellpad=
+ding=3D"0" cellspacing=3D"0" style=3D'font-family: Arial, Helvetica, sans-s=
+erif; font-size:14px; line-height:19px; color:#333; width: 170px;'> <tr> <t=
+d height=3D"40" bgcolor=3D"#f98b62" background=3D"http://s3.grouponcdn.com/=
+email/images/global_buttons/gradient_orange_sm.gif" background-repeat=3D"re=
+peat-x" style=3D"-moz-border-radius: 10px 10px 10px 10px; -webkit-border-ra=
+dius: 10px 10px 10px 10px; -khtml-border-radius: 10px 10px 10px 10px; borde=
+r-radius: 10px 10px 10px 10px; height:40px; border: 1px solid #f55d16; text=
+-align:center;"> <a href=3D"http://www.groupon.com/deals/gg-ca-premium-home=
+-whitening-kit?p=3D1&utm_source=3Dchannel_goods-deals&utm_medium=3Demail&si=
+d=3Dd3af3f52-c8cb-40b4-bda2-d68f165bec7f&division=3Dwinnipeg&user=3D1ec2b04=
+3b669a94506bfbb1a5439cec0185663ea7165cb935e22cbd2511f7647&date=3D20130102&s=
+=3Dbody&c=3Ddeal_img&d=3Ddeal-page" style=3D"display: block; padding:5px 10=
+px 5px 10px; color:#fff; text-shadow: 1px 1px 1px #b2552d; font-size:20px; =
+text-decoration:none; font-weight:bold; -webkit-text-size-adjust:none;" tar=
+get=3D"_blank">View This Deal</a></td> </tr> </table> </td> </tr> </table> =
+</td> </tr> </table> </td> </tr> </table> </td> </tr> </table> <table cellp=
+adding=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans=
+-serif; font-size:14px; line-height:19px; color:#333; width:100%; font-fami=
+ly: Helvetica, Arial, sans-serif; font-size:14px; background: #fff; line-he=
+ight:18px; text-align:left;" align=3D"center"> <tr> <td><img src=3D"http://=
+s3.grouponcdn.com/email/images/spacer.gif" style=3D"display:block;" border=
+=3D"0" width=3D"1" height=3D"20" /></td> </tr> <tr> <td align=3D"center"> <=
+table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, Helv=
+etica, sans-serif; font-size:14px; line-height:19px; color:#333;" align=3D"=
+center"> <tr> <td valign=3D"top" align=3D"center" style=3D"-moz-border-radi=
+us: 10px 10px 0 0; -webkit-border-radius: 10px 10px 0 0; border-radius: 10p=
+x 10px 0 0; -khtml-border-radius: 10px 10px 0 0; border-top: 1px solid #ccc=
+; border-left: 1px solid #ccc; border-right: 1px solid #ccc;"> <table cellp=
+adding=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans=
+-serif; font-size:14px; line-height:19px; color:#333;" align=3D"center"> <t=
+r> <td valign=3D"top" align=3D"center" style=3D"padding: 13px 13px 13px 13p=
+x;"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family: Arial=
+, Helvetica, sans-serif; font-size:14px; line-height:19px; color:#333;"> <t=
+r> <td valign=3D"top" align=3D"center"><a href=3D"http://www.groupon.com/de=
+als/gg-ca-egyptian-cotton-sheet-sets?p=3D2&utm_source=3Dchannel_goods-deals=
+&utm_medium=3Demail&sid=3Dd3af3f52-c8cb-40b4-bda2-d68f165bec7f&division=3Dw=
+innipeg&user=3D1ec2b043b669a94506bfbb1a5439cec0185663ea7165cb935e22cbd2511f=
+7647&date=3D20130102&s=3Dbody&c=3Ddeal_img&d=3Ddeal-page" target=3D"_blank"=
+ style=3D"font-size:10px; color:#0792bd;"><img src=3D"https://s3.grouponcdn=
+...com/images/site_images/2877/0212/RackMultipart20121218-3176-qaba5e_grid_4.=
+jpg" style=3D"display: block; border: none; width: 240px;" alt=3D"400-Threa=
+d-Count Egyptian-Cotton Sheets" title=3D"400-Thread-Count Egyptian-Cotton S=
+heets" width=3D"240" height=3D"146" /></a></td> </tr> <tr> <td style=3D"pad=
+ding: 20px 0px 0px 0px; font-weight:bold; text-align: left;"><a target=3D"_=
+blank" style=3D"text-decoration: none; font-size: 16px; color: #000;" href=
+=3D"http://www.groupon.com/deals/gg-ca-egyptian-cotton-sheet-sets?p=3D2&utm=
+_source=3Dchannel_goods-deals&utm_medium=3Demail&sid=3Dd3af3f52-c8cb-40b4-b=
+da2-d68f165bec7f&division=3Dwinnipeg&user=3D1ec2b043b669a94506bfbb1a5439cec=
+0185663ea7165cb935e22cbd2511f7647&date=3D20130102&s=3Dbody&c=3Ddeal_name&d=
+=3Ddeal-page" target=3D"_blank">400-Thread-Count Egyptian-Cotton Sheets</a>=
+</td> </tr> <tr> <td style=3D"font-size:12px; padding: 10px 0px 10px 0px; t=
+ext-align: left;"> 400-thread-count egyptian-cotton sheets wick away moistu=
+re and preserve warmth </td> </tr> </table> </td> </tr> </table> </td> <td =
+style=3D"line-height:0px;"><img src=3D"http://s3.grouponcdn.com/email/image=
+s/spacer.gif" style=3D"display:block;" border=3D"0" width=3D"23" height=3D"=
+1" /> </td> <td valign=3D"top" align=3D"center" style=3D"-moz-border-radius=
+: 10px 10px 0 0; -webkit-border-radius: 10px 10px 0 0; border-radius: 10px =
+10px 0 0; -khtml-border-radius: 10px 10px 0 0; border-top: 1px solid #ccc; =
+border-left: 1px solid #ccc; border-right: 1px solid #ccc;"> <table cellpad=
+ding=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans-s=
+erif; font-size:14px; line-height:19px; color:#333;" align=3D"center"> <tr>=
+ <td valign=3D"top" align=3D"center" style=3D"padding: 13px 13px 13px 13px;=
+"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, =
+Helvetica, sans-serif; font-size:14px; line-height:19px; color:#333;"> <tr>=
+ <td valign=3D"top" align=3D"center"><a href=3D"http://www.groupon.com/deal=
+s/gg-ca-timex-retro-calculator-watch?p=3D3&utm_source=3Dchannel_goods-deals=
+&utm_medium=3Demail&sid=3Dd3af3f52-c8cb-40b4-bda2-d68f165bec7f&division=3Dw=
+innipeg&user=3D1ec2b043b669a94506bfbb1a5439cec0185663ea7165cb935e22cbd2511f=
+7647&date=3D20130102&s=3Dbody&c=3Ddeal_img&d=3Ddeal-page" target=3D"_blank"=
+ style=3D"font-size:10px; color:#0792bd;"><img src=3D"https://s3.grouponcdn=
+...com/images/site_images/2880/9393/RackMultipart20121219-12562-ni47kz_grid_4=
+...jpg" style=3D"display: block; border: none; width: 240px;" alt=3D"Timex Un=
+isex Retro Calculator Watch" title=3D"Timex Unisex Retro Calculator Watch" =
+width=3D"240" height=3D"146" /></a></td> </tr> <tr> <td style=3D"padding: 2=
+0px 0px 0px 0px; font-weight:bold; text-align: left;"><a target=3D"_blank" =
+style=3D"text-decoration: none; font-size: 16px; color: #000;" href=3D"http=
+://www.groupon.com/deals/gg-ca-timex-retro-calculator-watch?p=3D3&utm_sourc=
+e=3Dchannel_goods-deals&utm_medium=3Demail&sid=3Dd3af3f52-c8cb-40b4-bda2-d6=
+8f165bec7f&division=3Dwinnipeg&user=3D1ec2b043b669a94506bfbb1a5439cec018566=
+3ea7165cb935e22cbd2511f7647&date=3D20130102&s=3Dbody&c=3Ddeal_name&d=3Ddeal=
+-page" target=3D"_blank">Timex Unisex Retro Calculator Watch</a></td> </tr>=
+ <tr> <td style=3D"font-size:12px; padding: 10px 0px 10px 0px; text-align: =
+left;"> LCD screen; time-zone, calculator, and alarm functions </td> </tr> =
+</table> </td> </tr> </table> </td> </tr> <tr> <td align=3D"center" style=
+=3D"-moz-border-radius: 0 0 10px 10px; border-radius: 0 0 10px 10px; -webki=
+t-border-radius: 0 0 10px 10px; -khtml-border-radius: 0 0 10px 10px; width:=
+266px; border-bottom: 1px solid #ccc; border-left : 1px solid #ccc; border-=
+right: 1px solid #ccc;" width=3D"266"> <table cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"font-family: Arial, Helvetica, sans-serif; font-size:14px; =
+line-height:19px; color:#333; width: 100%;" align=3D"center"> <tr> <td alig=
+n=3D"center"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-fami=
+ly: Arial, Helvetica, sans-serif; font-size:14px; line-height:19px; color:#=
+333; width:100%;"> <tr> <td valign=3D"bottom"> <table cellpadding=3D"0" cel=
+lspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans-serif; font-siz=
+e:14px; line-height:19px; color:#333; width:100%; height:100%; background:#=
+fffedd; -moz-border-radius: 0 0 10px 10px; border-radius: 0 0 10px 10px; -w=
+ebkit-border-radius: 0 0 10px 10px; -khtml-border-radius: 0 0 10px 10px; bo=
+rder-top: 1px solid #f1ea9a;" valign=3D"bottom"> <tr> <td align=3D"center" =
+valign=3D"bottom"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"font=
+-family: Arial, Helvetica, sans-serif; font-size:14px; line-height:19px; co=
+lor:#333; width: 230px; height: 100%;" valign=3D"bottom"> <tr> <td style=3D=
+"text-decoration: line-through;">C$90</td> <td style=3D"padding: 0 0 0 5px;=
+ color: #cc2127; font-weight: bold; font-size: 16px;">C$39</td> <td style=
+=3D"color: #cc2127;">(57% off)</td> <td style=3D"padding: 10px 0 10px 0; he=
+ight: 100%;" align=3D"right"> <table cellpadding=3D"0" cellspacing=3D"0" st=
+yle=3D"font-family: Arial, Helvetica, sans-serif; font-size:14px; line-heig=
+ht:19px; color:#333; width: 60px;" valign=3D"bottom"> <tr> <td height=3D"40=
+" bgcolor=3D"#f98b62" background=3D"http://s3.grouponcdn.com/email/images/g=
+lobal_buttons/gradient_orange_sm.gif" background-repeat=3D"repeat-x" style=
+=3D"-moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius: 10px 10=
+px 10px 10px; -khtml-border-radius: 10px 10px 10px 10px; border-radius: 10p=
+x 10px 10px 10px; height:30px; border: 1px solid #f55d16; text-align:center=
+;"> <a href=3D"http://www.groupon.com/deals/gg-ca-egyptian-cotton-sheet-set=
+s?p=3D2&utm_source=3Dchannel_goods-deals&utm_medium=3Demail&sid=3Dd3af3f52-=
+c8cb-40b4-bda2-d68f165bec7f&division=3Dwinnipeg&user=3D1ec2b043b669a94506bf=
+bb1a5439cec0185663ea7165cb935e22cbd2511f7647&date=3D20130102&s=3Dbody&c=3Dd=
+eal_img&d=3Ddeal-page" style=3D"display: block; padding:5px 10px 5px 10px; =
+color:#fff; text-shadow: 1px 1px 1px #b2552d; font-size:16px; text-decorati=
+on:none; font-weight:bold" target=3D"_blank">View</a></td> </tr> </table> <=
+/td> </tr> </table> </td> </tr> </table> </td> </tr> </table> </td> </tr> <=
+/table> </td> <td style=3D"line-height:0px;"><img src=3D"http://s3.grouponc=
+dn.com/email/images/spacer.gif" style=3D"display:block;" border=3D"0" width=
+=3D"23" height=3D"1" /> </td> <td align=3D"center" style=3D"-moz-border-rad=
+ius: 0 0 10px 10px; border-radius: 0 0 10px 10px; -webkit-border-radius: 0 =
+0 10px 10px; -khtml-border-radius: 0 0 10px 10px; width:266px; border-botto=
+m: 1px solid #ccc; border-left : 1px solid #ccc; border-right: 1px solid #c=
+cc;" width=3D"266"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"fon=
+t-family: Arial, Helvetica, sans-serif; font-size:14px; line-height:19px; c=
+olor:#333; width: 100%;" align=3D"center"> <tr> <td align=3D"center"> <tabl=
+e cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, Helvetic=
+a, sans-serif; font-size:14px; line-height:19px; color:#333; width:100%;"> =
+<tr> <td valign=3D"bottom"> <table cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"font-family: Arial, Helvetica, sans-serif; font-size:14px; line-height=
+:19px; color:#333; width:100%; height:100%; background:#fffedd; -moz-border=
+-radius: 0 0 10px 10px; border-radius: 0 0 10px 10px; -webkit-border-radius=
+: 0 0 10px 10px; -khtml-border-radius: 0 0 10px 10px; border-top: 1px solid=
+ #f1ea9a;" valign=3D"bottom"> <tr> <td align=3D"center" valign=3D"bottom"> =
+<table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, Hel=
+vetica, sans-serif; font-size:14px; line-height:19px; color:#333; width: 23=
+0px; height: 100%;" valign=3D"bottom"> <tr> <td style=3D"text-decoration: l=
+ine-through;">C$80</td> <td style=3D"padding: 0 0 0 5px; color: #cc2127; fo=
+nt-weight: bold; font-size: 16px;">C$25</td> <td style=3D"color: #cc2127;">=
+(69% off)</td> <td style=3D"padding: 10px 0 10px 0; height: 100%;" align=3D=
+"right"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family: A=
+rial, Helvetica, sans-serif; font-size:14px; line-height:19px; color:#333; =
+width: 60px;" valign=3D"bottom"> <tr> <td height=3D"40" bgcolor=3D"#f98b62"=
+ background=3D"http://s3.grouponcdn.com/email/images/global_buttons/gradien=
+t_orange_sm.gif" background-repeat=3D"repeat-x" style=3D"-moz-border-radius=
+: 10px 10px 10px 10px; -webkit-border-radius: 10px 10px 10px 10px; -khtml-b=
+order-radius: 10px 10px 10px 10px; border-radius: 10px 10px 10px 10px; heig=
+ht:30px; border: 1px solid #f55d16; text-align:center;"> <a href=3D"http://=
+www.groupon.com/deals/gg-ca-timex-retro-calculator-watch?p=3D3&utm_source=
+=3Dchannel_goods-deals&utm_medium=3Demail&sid=3Dd3af3f52-c8cb-40b4-bda2-d68=
+f165bec7f&division=3Dwinnipeg&user=3D1ec2b043b669a94506bfbb1a5439cec0185663=
+ea7165cb935e22cbd2511f7647&date=3D20130102&s=3Dbody&c=3Ddeal_img&d=3Ddeal-p=
+age" style=3D"display: block; padding:5px 10px 5px 10px; color:#fff; text-s=
+hadow: 1px 1px 1px #b2552d; font-size:16px; text-decoration:none; font-weig=
+ht:bold" target=3D"_blank">View</a></td> </tr> </table> </td> </tr> </table=
+> </td> </tr> </table> </td> </tr> </table> </td> </tr> </table> </td> </tr=
+> </table> </td> </tr> <tr> <td><img src=3D"http://s3.grouponcdn.com/email/=
+images/spacer.gif" style=3D"display:block;" border=3D"0" width=3D"1" height=
+=3D"20" /></td> </tr> <tr> <td align=3D"center"> <table cellpadding=3D"0" c=
+ellspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans-serif; font-s=
+ize:14px; line-height:19px; color:#333;" align=3D"center"> <tr> <td valign=
+=3D"top" align=3D"center" style=3D"-moz-border-radius: 10px 10px 0 0; -webk=
+it-border-radius: 10px 10px 0 0; border-radius: 10px 10px 0 0; -khtml-borde=
+r-radius: 10px 10px 0 0; border-top: 1px solid #ccc; border-left: 1px solid=
+ #ccc; border-right: 1px solid #ccc;"> <table cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"font-family: Arial, Helvetica, sans-serif; font-size:14px; =
+line-height:19px; color:#333;" align=3D"center"> <tr> <td valign=3D"top" al=
+ign=3D"center" style=3D"padding: 13px 13px 13px 13px;"> <table cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans-serif=
+; font-size:14px; line-height:19px; color:#333;"> <tr> <td valign=3D"top" a=
+lign=3D"center"><a href=3D"http://www.groupon.com/deals/gg-ca-veho-muvi-hd-=
+no-proof-no-glory-bundle?p=3D4&utm_source=3Dchannel_goods-deals&utm_medium=
+=3Demail&sid=3Dd3af3f52-c8cb-40b4-bda2-d68f165bec7f&division=3Dwinnipeg&use=
+r=3D1ec2b043b669a94506bfbb1a5439cec0185663ea7165cb935e22cbd2511f7647&date=
+=3D20130102&s=3Dbody&c=3Ddeal_img&d=3Ddeal-page" target=3D"_blank" style=3D=
+"font-size:10px; color:#0792bd;"><img src=3D"https://s3.grouponcdn.com/imag=
+es/site_images/2892/7641/RackMultipart20121226-8073-ujyckr_grid_4.jpg" styl=
+e=3D"display: block; border: none; width: 240px;" alt=3D"Veho Muvi HD Actio=
+n Sports Camcorder Bundle" title=3D"Veho Muvi HD Action Sports Camcorder Bu=
+ndle" width=3D"240" height=3D"146" /></a></td> </tr> <tr> <td style=3D"padd=
+ing: 20px 0px 0px 0px; font-weight:bold; text-align: left;"><a target=3D"_b=
+lank" style=3D"text-decoration: none; font-size: 16px; color: #000;" href=
+=3D"http://www.groupon.com/deals/gg-ca-veho-muvi-hd-no-proof-no-glory-bundl=
+e?p=3D4&utm_source=3Dchannel_goods-deals&utm_medium=3Demail&sid=3Dd3af3f52-=
+c8cb-40b4-bda2-d68f165bec7f&division=3Dwinnipeg&user=3D1ec2b043b669a94506bf=
+bb1a5439cec0185663ea7165cb935e22cbd2511f7647&date=3D20130102&s=3Dbody&c=3Dd=
+eal_name&d=3Ddeal-page" target=3D"_blank">Veho Muvi HD Action Sports Camcor=
+der Bundle</a></td> </tr> <tr> <td style=3D"font-size:12px; padding: 10px 0=
+px 10px 0px; text-align: left;"> Capture hands-free POV shots with a helmet=
+ mount and water-resistant case; an 8GB microSD card stores around 80 minut=
+es of 1080p footage </td> </tr> </table> </td> </tr> </table> </td> <td sty=
+le=3D"line-height:0px;"><img src=3D"http://s3.grouponcdn.com/email/images/s=
+pacer.gif" style=3D"display:block;" border=3D"0" width=3D"23" height=3D"1" =
+/> </td> <td valign=3D"top" align=3D"center" style=3D"-moz-border-radius: 1=
+0px 10px 0 0; -webkit-border-radius: 10px 10px 0 0; border-radius: 10px 10p=
+x 0 0; -khtml-border-radius: 10px 10px 0 0; border-top: 1px solid #ccc; bor=
+der-left: 1px solid #ccc; border-right: 1px solid #ccc;"> <table cellpaddin=
+g=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans-seri=
+f; font-size:14px; line-height:19px; color:#333;" align=3D"center"> <tr> <t=
+d valign=3D"top" align=3D"center" style=3D"padding: 13px 13px 13px 13px;"> =
+<table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, Hel=
+vetica, sans-serif; font-size:14px; line-height:19px; color:#333;"> <tr> <t=
+d valign=3D"top" align=3D"center"><a href=3D"http://www.groupon.com/deals/g=
+g-ca-blood-pressure-monitor?p=3D5&utm_source=3Dchannel_goods-deals&utm_medi=
+um=3Demail&sid=3Dd3af3f52-c8cb-40b4-bda2-d68f165bec7f&division=3Dwinnipeg&u=
+ser=3D1ec2b043b669a94506bfbb1a5439cec0185663ea7165cb935e22cbd2511f7647&date=
+=3D20130102&s=3Dbody&c=3Ddeal_img&d=3Ddeal-page" target=3D"_blank" style=3D=
+"font-size:10px; color:#0792bd;"><img src=3D"https://s3.grouponcdn.com/imag=
+es/site_images/2894/4003/RackMultipart20121227-17999-vix2x7_grid_4.jpg" sty=
+le=3D"display: block; border: none; width: 240px;" alt=3D"Portable Blood-Pr=
+essure Monitor" title=3D"Portable Blood-Pressure Monitor" width=3D"240" hei=
+ght=3D"146" /></a></td> </tr> <tr> <td style=3D"padding: 20px 0px 0px 0px; =
+font-weight:bold; text-align: left;"><a target=3D"_blank" style=3D"text-dec=
+oration: none; font-size: 16px; color: #000;" href=3D"http://www.groupon.co=
+m/deals/gg-ca-blood-pressure-monitor?p=3D5&utm_source=3Dchannel_goods-deals=
+&utm_medium=3Demail&sid=3Dd3af3f52-c8cb-40b4-bda2-d68f165bec7f&division=3Dw=
+innipeg&user=3D1ec2b043b669a94506bfbb1a5439cec0185663ea7165cb935e22cbd2511f=
+7647&date=3D20130102&s=3Dbody&c=3Ddeal_name&d=3Ddeal-page" target=3D"_blank=
+">Portable Blood-Pressure Monitor</a></td> </tr> <tr> <td style=3D"font-siz=
+e:12px; padding: 10px 0px 10px 0px; text-align: left;"> An automatic blood-=
+pressure monitor clasps around upper arms to measure readings; internal mem=
+ory stores up to 60 readings </td> </tr> </table> </td> </tr> </table> </td=
+> </tr> <tr> <td align=3D"center" style=3D"-moz-border-radius: 0 0 10px 10p=
+x; border-radius: 0 0 10px 10px; -webkit-border-radius: 0 0 10px 10px; -kht=
+ml-border-radius: 0 0 10px 10px; width:266px; border-bottom: 1px solid #ccc=
+; border-left : 1px solid #ccc; border-right: 1px solid #ccc;" width=3D"266=
+"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, =
+Helvetica, sans-serif; font-size:14px; line-height:19px; color:#333; width:=
+ 100%;" align=3D"center"> <tr> <td align=3D"center"> <table cellpadding=3D"=
+0" cellspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans-serif; fo=
+nt-size:14px; line-height:19px; color:#333; width:100%;"> <tr> <td valign=
+=3D"bottom"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-famil=
+y: Arial, Helvetica, sans-serif; font-size:14px; line-height:19px; color:#3=
+33; width:100%; height:100%; background:#fffedd; -moz-border-radius: 0 0 10=
+px 10px; border-radius: 0 0 10px 10px; -webkit-border-radius: 0 0 10px 10px=
+; -khtml-border-radius: 0 0 10px 10px; border-top: 1px solid #f1ea9a;" vali=
+gn=3D"bottom"> <tr> <td align=3D"center" valign=3D"bottom"> <table cellpadd=
+ing=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans-se=
+rif; font-size:14px; line-height:19px; color:#333; width: 230px; height: 10=
+0%;" valign=3D"bottom"> <tr> <td style=3D"text-decoration: line-through;">C=
+$280</td> <td style=3D"padding: 0 0 0 5px; color: #cc2127; font-weight: bol=
+d; font-size: 16px;">C$159</td> <td style=3D"color: #cc2127;">(43% off)</td=
+> <td style=3D"padding: 10px 0 10px 0; height: 100%;" align=3D"right"> <tab=
+le cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, Helveti=
+ca, sans-serif; font-size:14px; line-height:19px; color:#333; width: 60px;"=
+ valign=3D"bottom"> <tr> <td height=3D"40" bgcolor=3D"#f98b62" background=
+=3D"http://s3.grouponcdn.com/email/images/global_buttons/gradient_orange_sm=
+...gif" background-repeat=3D"repeat-x" style=3D"-moz-border-radius: 10px 10px=
+ 10px 10px; -webkit-border-radius: 10px 10px 10px 10px; -khtml-border-radiu=
+s: 10px 10px 10px 10px; border-radius: 10px 10px 10px 10px; height:30px; bo=
+rder: 1px solid #f55d16; text-align:center;"> <a href=3D"http://www.groupon=
+...com/deals/gg-ca-veho-muvi-hd-no-proof-no-glory-bundle?p=3D4&utm_source=3Dc=
+hannel_goods-deals&utm_medium=3Demail&sid=3Dd3af3f52-c8cb-40b4-bda2-d68f165=
+bec7f&division=3Dwinnipeg&user=3D1ec2b043b669a94506bfbb1a5439cec0185663ea71=
+65cb935e22cbd2511f7647&date=3D20130102&s=3Dbody&c=3Ddeal_img&d=3Ddeal-page"=
+ style=3D"display: block; padding:5px 10px 5px 10px; color:#fff; text-shado=
+w: 1px 1px 1px #b2552d; font-size:16px; text-decoration:none; font-weight:b=
+old" target=3D"_blank">View</a></td> </tr> </table> </td> </tr> </table> </=
+td> </tr> </table> </td> </tr> </table> </td> </tr> </table> </td> <td styl=
+e=3D"line-height:0px;"><img src=3D"http://s3.grouponcdn.com/email/images/sp=
+acer.gif" style=3D"display:block;" border=3D"0" width=3D"23" height=3D"1" /=
+> </td> <td align=3D"center" style=3D"-moz-border-radius: 0 0 10px 10px; bo=
+rder-radius: 0 0 10px 10px; -webkit-border-radius: 0 0 10px 10px; -khtml-bo=
+rder-radius: 0 0 10px 10px; width:266px; border-bottom: 1px solid #ccc; bor=
+der-left : 1px solid #ccc; border-right: 1px solid #ccc;" width=3D"266"> <t=
+able cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, Helve=
+tica, sans-serif; font-size:14px; line-height:19px; color:#333; width: 100%=
+;" align=3D"center"> <tr> <td align=3D"center"> <table cellpadding=3D"0" ce=
+llspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans-serif; font-si=
+ze:14px; line-height:19px; color:#333; width:100%;"> <tr> <td valign=3D"bot=
+tom"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family: Aria=
+l, Helvetica, sans-serif; font-size:14px; line-height:19px; color:#333; wid=
+th:100%; height:100%; background:#fffedd; -moz-border-radius: 0 0 10px 10px=
+; border-radius: 0 0 10px 10px; -webkit-border-radius: 0 0 10px 10px; -khtm=
+l-border-radius: 0 0 10px 10px; border-top: 1px solid #f1ea9a;" valign=3D"b=
+ottom"> <tr> <td align=3D"center" valign=3D"bottom"> <table cellpadding=3D"=
+0" cellspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans-serif; fo=
+nt-size:14px; line-height:19px; color:#333; width: 230px; height: 100%;" va=
+lign=3D"bottom"> <tr> <td style=3D"text-decoration: line-through;">C$125</t=
+d> <td style=3D"padding: 0 0 0 5px; color: #cc2127; font-weight: bold; font=
+-size: 16px;">C$39</td> <td style=3D"color: #cc2127;">(69% off)</td> <td st=
+yle=3D"padding: 10px 0 10px 0; height: 100%;" align=3D"right"> <table cellp=
+adding=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans=
+-serif; font-size:14px; line-height:19px; color:#333; width: 60px;" valign=
+=3D"bottom"> <tr> <td height=3D"40" bgcolor=3D"#f98b62" background=3D"http:=
+//s3.grouponcdn.com/email/images/global_buttons/gradient_orange_sm.gif" bac=
+kground-repeat=3D"repeat-x" style=3D"-moz-border-radius: 10px 10px 10px 10p=
+x; -webkit-border-radius: 10px 10px 10px 10px; -khtml-border-radius: 10px 1=
+0px 10px 10px; border-radius: 10px 10px 10px 10px; height:30px; border: 1px=
+ solid #f55d16; text-align:center;"> <a href=3D"http://www.groupon.com/deal=
+s/gg-ca-blood-pressure-monitor?p=3D5&utm_source=3Dchannel_goods-deals&utm_m=
+edium=3Demail&sid=3Dd3af3f52-c8cb-40b4-bda2-d68f165bec7f&division=3Dwinnipe=
+g&user=3D1ec2b043b669a94506bfbb1a5439cec0185663ea7165cb935e22cbd2511f7647&d=
+ate=3D20130102&s=3Dbody&c=3Ddeal_img&d=3Ddeal-page" style=3D"display: block=
+; padding:5px 10px 5px 10px; color:#fff; text-shadow: 1px 1px 1px #b2552d; =
+font-size:16px; text-decoration:none; font-weight:bold" target=3D"_blank">V=
+iew</a></td> </tr> </table> </td> </tr> </table> </td> </tr> </table> </td>=
+ </tr> </table> </td> </tr> </table> </td> </tr> </table> </td> </tr> <tr> =
+<td><img src=3D"http://s3.grouponcdn.com/email/images/spacer.gif" style=3D"=
+display:block;" border=3D"0" width=3D"1" height=3D"20" /></td> </tr> <tr> <=
+td align=3D"center"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"fo=
+nt-family: Arial, Helvetica, sans-serif; font-size:14px; line-height:19px; =
+color:#333;" align=3D"center"> <tr> <td valign=3D"top" align=3D"center" sty=
+le=3D"-moz-border-radius: 10px 10px 0 0; -webkit-border-radius: 10px 10px 0=
+ 0; border-radius: 10px 10px 0 0; -khtml-border-radius: 10px 10px 0 0; bord=
+er-top: 1px solid #ccc; border-left: 1px solid #ccc; border-right: 1px soli=
+d #ccc;"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family: =
+Arial, Helvetica, sans-serif; font-size:14px; line-height:19px; color:#333;=
+" align=3D"center"> <tr> <td valign=3D"top" align=3D"center" style=3D"paddi=
+ng: 13px 13px 13px 13px;"> <table cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"font-family: Arial, Helvetica, sans-serif; font-size:14px; line-height:=
+19px; color:#333;"> <tr> <td valign=3D"top" align=3D"center"><a href=3D"htt=
+p://www.groupon.com/deals/gg-ca-set-of-10-preschool-prep-dvds?p=3D6&utm_sou=
+rce=3Dchannel_goods-deals&utm_medium=3Demail&sid=3Dd3af3f52-c8cb-40b4-bda2-=
+d68f165bec7f&division=3Dwinnipeg&user=3D1ec2b043b669a94506bfbb1a5439cec0185=
+663ea7165cb935e22cbd2511f7647&date=3D20130102&s=3Dbody&c=3Ddeal_img&d=3Ddea=
+l-page" target=3D"_blank" style=3D"font-size:10px; color:#0792bd;"><img src=
+=3D"https://s3.grouponcdn.com/images/site_images/2880/9009/RackMultipart201=
+21219-12049-93k8lv_grid_4.jpg" style=3D"display: block; border: none; width=
+: 240px;" alt=3D"Set of 10 Preschool Prep DVDs" title=3D"Set of 10 Preschoo=
+l Prep DVDs" width=3D"240" height=3D"146" /></a></td> </tr> <tr> <td style=
+=3D"padding: 20px 0px 0px 0px; font-weight:bold; text-align: left;"><a targ=
+et=3D"_blank" style=3D"text-decoration: none; font-size: 16px; color: #000;=
+" href=3D"http://www.groupon.com/deals/gg-ca-set-of-10-preschool-prep-dvds?=
+p=3D6&utm_source=3Dchannel_goods-deals&utm_medium=3Demail&sid=3Dd3af3f52-c8=
+cb-40b4-bda2-d68f165bec7f&division=3Dwinnipeg&user=3D1ec2b043b669a94506bfbb=
+1a5439cec0185663ea7165cb935e22cbd2511f7647&date=3D20130102&s=3Dbody&c=3Ddea=
+l_name&d=3Ddeal-page" target=3D"_blank">Set of 10 Preschool Prep DVDs</a></=
+td> </tr> <tr> <td style=3D"font-size:12px; padding: 10px 0px 10px 0px; tex=
+t-align: left;"> DVDs use sight-recognition techniques to help kids aged 9 =
+months to 7 years understand concepts such as numbers, letters, and colours=
+ </td> </tr> </table> </td> </tr> </table> </td> <td style=3D"line-height:0=
+px;"><img src=3D"http://s3.grouponcdn.com/email/images/spacer.gif" style=3D=
+"display:block;" border=3D"0" width=3D"23" height=3D"1" /> </td> <td valign=
+=3D"top" align=3D"center" style=3D"-moz-border-radius: 10px 10px 0 0; -webk=
+it-border-radius: 10px 10px 0 0; border-radius: 10px 10px 0 0; -khtml-borde=
+r-radius: 10px 10px 0 0; border-top: 1px solid #ccc; border-left: 1px solid=
+ #ccc; border-right: 1px solid #ccc;"> <table cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"font-family: Arial, Helvetica, sans-serif; font-size:14px; =
+line-height:19px; color:#333;" align=3D"center"> <tr> <td valign=3D"top" al=
+ign=3D"center" style=3D"padding: 13px 13px 13px 13px;"> <table cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans-serif=
+; font-size:14px; line-height:19px; color:#333;"> <tr> <td valign=3D"top" a=
+lign=3D"center"><a href=3D"http://www.groupon.com/deals/gg-ca-first-questio=
+ns-book-bundles?p=3D7&utm_source=3Dchannel_goods-deals&utm_medium=3Demail&s=
+id=3Dd3af3f52-c8cb-40b4-bda2-d68f165bec7f&division=3Dwinnipeg&user=3D1ec2b0=
+43b669a94506bfbb1a5439cec0185663ea7165cb935e22cbd2511f7647&date=3D20130102&=
+s=3Dbody&c=3Ddeal_img&d=3Ddeal-page" target=3D"_blank" style=3D"font-size:1=
+0px; color:#0792bd;"><img src=3D"https://s3.grouponcdn.com/images/site_imag=
+es/2893/9244/RackMultipart20121227-8117-l5wwc2_grid_4.jpg" style=3D"display=
+: block; border: none; width: 240px;" alt=3D"10 Children's Questions Books"=
+ title=3D"10 Children's Questions Books" width=3D"240" height=3D"146" /></a=
+></td> </tr> <tr> <td style=3D"padding: 20px 0px 0px 0px; font-weight:bold;=
+ text-align: left;"><a target=3D"_blank" style=3D"text-decoration: none; fo=
+nt-size: 16px; color: #000;" href=3D"http://www.groupon.com/deals/gg-ca-fir=
+st-questions-book-bundles?p=3D7&utm_source=3Dchannel_goods-deals&utm_medium=
+=3Demail&sid=3Dd3af3f52-c8cb-40b4-bda2-d68f165bec7f&division=3Dwinnipeg&use=
+r=3D1ec2b043b669a94506bfbb1a5439cec0185663ea7165cb935e22cbd2511f7647&date=
+=3D20130102&s=3Dbody&c=3Ddeal_name&d=3Ddeal-page" target=3D"_blank">10 Chil=
+dren's Questions Books</a></td> </tr> <tr> <td style=3D"font-size:12px; pad=
+ding: 10px 0px 10px 0px; text-align: left;"> Illustrated, educational 10-bo=
+ok sets answer some of kids common questions about animals, science, and hi=
+story </td> </tr> </table> </td> </tr> </table> </td> </tr> <tr> <td align=
+=3D"center" style=3D"-moz-border-radius: 0 0 10px 10px; border-radius: 0 0 =
+10px 10px; -webkit-border-radius: 0 0 10px 10px; -khtml-border-radius: 0 0 =
+10px 10px; width:266px; border-bottom: 1px solid #ccc; border-left : 1px so=
+lid #ccc; border-right: 1px solid #ccc;" width=3D"266"> <table cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans-serif=
+; font-size:14px; line-height:19px; color:#333; width: 100%;" align=3D"cent=
+er"> <tr> <td align=3D"center"> <table cellpadding=3D"0" cellspacing=3D"0" =
+style=3D"font-family: Arial, Helvetica, sans-serif; font-size:14px; line-he=
+ight:19px; color:#333; width:100%;"> <tr> <td valign=3D"bottom"> <table cel=
+lpadding=3D"0" cellspacing=3D"0" style=3D"font-family: Arial, Helvetica, sa=
+ns-serif; font-size:14px; line-height:19px; color:#333; width:100%; height:=
+100%; background:#fffedd; -moz-border-radius: 0 0 10px 10px; border-radius:=
+ 0 0 10px 10px; -webkit-border-radius: 0 0 10px 10px; -khtml-border-radius:=
+ 0 0 10px 10px; border-top: 1px solid #f1ea9a;" valign=3D"bottom"> <tr> <td=
+ align=3D"center" valign=3D"bottom"> <table cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"font-family: Arial, Helvetica, sans-serif; font-size:14px; =
+line-height:19px; color:#333; width: 230px; height: 100%;" valign=3D"bottom=
+"> <tr> <td style=3D"text-decoration: line-through;">C$130</td> <td style=
+=3D"padding: 0 0 0 5px; color: #cc2127; font-weight: bold; font-size: 16px;=
+">C$44</td> <td style=3D"color: #cc2127;">(66% off)</td> <td style=3D"paddi=
+ng: 10px 0 10px 0; height: 100%;" align=3D"right"> <table cellpadding=3D"0"=
+ cellspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans-serif; font=
+-size:14px; line-height:19px; color:#333; width: 60px;" valign=3D"bottom"> =
+<tr> <td height=3D"40" bgcolor=3D"#f98b62" background=3D"http://s3.grouponc=
+dn.com/email/images/global_buttons/gradient_orange_sm.gif" background-repea=
+t=3D"repeat-x" style=3D"-moz-border-radius: 10px 10px 10px 10px; -webkit-bo=
+rder-radius: 10px 10px 10px 10px; -khtml-border-radius: 10px 10px 10px 10px=
+; border-radius: 10px 10px 10px 10px; height:30px; border: 1px solid #f55d1=
+6; text-align:center;"> <a href=3D"http://www.groupon.com/deals/gg-ca-set-o=
+f-10-preschool-prep-dvds?p=3D6&utm_source=3Dchannel_goods-deals&utm_medium=
+=3Demail&sid=3Dd3af3f52-c8cb-40b4-bda2-d68f165bec7f&division=3Dwinnipeg&use=
+r=3D1ec2b043b669a94506bfbb1a5439cec0185663ea7165cb935e22cbd2511f7647&date=
+=3D20130102&s=3Dbody&c=3Ddeal_img&d=3Ddeal-page" style=3D"display: block; p=
+adding:5px 10px 5px 10px; color:#fff; text-shadow: 1px 1px 1px #b2552d; fon=
+t-size:16px; text-decoration:none; font-weight:bold" target=3D"_blank">View=
+</a></td> </tr> </table> </td> </tr> </table> </td> </tr> </table> </td> </=
+tr> </table> </td> </tr> </table> </td> <td style=3D"line-height:0px;"><img=
+ src=3D"http://s3.grouponcdn.com/email/images/spacer.gif" style=3D"display:=
+block;" border=3D"0" width=3D"23" height=3D"1" /> </td> <td align=3D"center=
+" style=3D"-moz-border-radius: 0 0 10px 10px; border-radius: 0 0 10px 10px;=
+ -webkit-border-radius: 0 0 10px 10px; -khtml-border-radius: 0 0 10px 10px;=
+ width:266px; border-bottom: 1px solid #ccc; border-left : 1px solid #ccc; =
+border-right: 1px solid #ccc;" width=3D"266"> <table cellpadding=3D"0" cell=
+spacing=3D"0" style=3D"font-family: Arial, Helvetica, sans-serif; font-size=
+:14px; line-height:19px; color:#333; width: 100%;" align=3D"center"> <tr> <=
+td align=3D"center"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"fo=
+nt-family: Arial, Helvetica, sans-serif; font-size:14px; line-height:19px; =
+color:#333; width:100%;"> <tr> <td valign=3D"bottom"> <table cellpadding=3D=
+"0" cellspacing=3D"0" style=3D"font-family: Arial, Helvetica, sans-serif; f=
+ont-size:14px; line-height:19px; color:#333; width:100%; height:100%; backg=
+round:#fffedd; -moz-border-radius: 0 0 10px 10px; border-radius: 0 0 10px 1=
+0px; -webkit-border-radius: 0 0 10px 10px; -khtml-border-radius: 0 0 10px 1=
+0px; border-top: 1px solid #f1ea9a;" valign=3D"bottom"> <tr> <td align=3D"c=
+enter" valign=3D"bottom"> <table cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"font-family: Arial, Helvetica, sans-serif; font-size:14px; line-height:=
+19px; color:#333; width: 230px; height: 100%;" valign=3D"bottom"> <tr> <td =
+style=3D"text-decoration: line-through;">C$89</td> <td style=3D"padding: 0 =
+0 0 5px; color: #cc2127; font-weight: bold; font-size: 16px;">C$29</td> <td=
+ style=3D"color: #cc2127;">(67% off)</td> <td style=3D"padding: 10px 0 10px=
+ 0; height: 100%;" align=3D"right"> <table cellpadding=3D"0" cellspacing=3D=
+"0" style=3D"font-family: Arial, Helvetica, sans-serif; font-size:14px; lin=
+e-height:19px; color:#333; width: 60px;" valign=3D"bottom"> <tr> <td height=
+=3D"40" bgcolor=3D"#f98b62" background=3D"http://s3.grouponcdn.com/email/im=
+ages/global_buttons/gradient_orange_sm.gif" background-repeat=3D"repeat-x" =
+style=3D"-moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius: 10=
+px 10px 10px 10px; -khtml-border-radius: 10px 10px 10px 10px; border-radius=
+: 10px 10px 10px 10px; height:30px; border: 1px solid #f55d16; text-align:c=
+enter;"> <a href=3D"http://www.groupon.com/deals/gg-ca-first-questions-book=
+-bundles?p=3D7&utm_source=3Dchannel_goods-deals&utm_medium=3Demail&sid=3Dd3=
+af3f52-c8cb-40b4-bda2-d68f165bec7f&division=3Dwinnipeg&user=3D1ec2b043b669a=
+94506bfbb1a5439cec0185663ea7165cb935e22cbd2511f7647&date=3D20130102&s=3Dbod=
+y&c=3Ddeal_img&d=3Ddeal-page" style=3D"display: block; padding:5px 10px 5px=
+ 10px; color:#fff; text-shadow: 1px 1px 1px #b2552d; font-size:16px; text-d=
+ecoration:none; font-weight:bold" target=3D"_blank">View</a></td> </tr> </t=
+able> </td> </tr> </table> </td> </tr> </table> </td> </tr> </table> </td> =
+</tr> </table> </td> </tr> </table> </td> </tr> </table> </td> </tr> <!--Pr=
+omo Spots --> <!--//Promo Spots --> </table> </td> </tr> </table> </td> </t=
+r> </table> <table cellpadding=3D"0" cellspacing=3D"0" align=3D"center" sty=
+le=3D'font-family: Arial, Helvetica, sans-serif; font-size:14px; line-heigh=
+t:19px; color:#333; width:600px;'> <tr> <td style=3D'background:#ddedcc; te=
+xt-align:left; padding:10px 10px 10px 10px; -moz-border-radius: 0 0 6px 6px=
+; border-radius: 0 0 6px 6px; -webkit-border-radius: 0 0 6px 6px; -khtml-bo=
+rder-radius: 0 0 6px 6px;' align=3D"left" valign=3D'top'> <table cellpaddin=
+g=3D"0" cellspacing=3D"0" style=3D'font-family: Arial, Helvetica, sans-seri=
+f; font-size:14px; line-height:19px; color:#333; width:100%;'> <tr> <td sty=
+le=3D'color:#545454; font-weight:700; font-size:12px; font-family:Arial, He=
+lvetica, sans-serif; -webkit-text-size-adjust:none;' valign=3D'middle'> Nee=
+d help? Have feedback? Feel free to <a href=3D"http://www.groupon.com/helpc=
+enter?touchpage=3Dfalse&utm_source=3Dchannel_goods-deals&utm_medium=3Demail=
+&sid=3Dd3af3f52-c8cb-40b4-bda2-d68f165bec7f&division=3Dwinnipeg&user=3D1ec2=
+b043b669a94506bfbb1a5439cec0185663ea7165cb935e22cbd2511f7647&date=3D2013010=
+2&s=3Dfooter&c=3Dlink&d=3Dsupport" style=3D"font-family:Arial,Helvetica;tex=
+t-decoration:none;color:#0792bd;" title=3D"Contact Us" target=3D"_blank">Co=
+ntact us</a></td> <td align=3D"right" style=3D"font-size:12px;color:#545454=
+;font-weight:700;padding:0px 20px 0px 0px;" valign=3D"middle"> <table cellp=
+adding=3D"0" cellspacing=3D"0"> <tr> <td align=3D"right" style=3D"font-size=
+:12px;margin:0px;font-family:Arial, Helvetica;color:#333333;text-align:left=
+;font-size:12px;color:#545454;font-weight:700;padding:0 10px 0 0; -webkit-t=
+ext-size-adjust:none;" valign=3D"middle">Follow us:</td> <td align=3D"right=
+" style=3D"width:17px;padding:0 10px 0 0;" valign=3D"middle" width=3D"17px"=
+><a href=3D"http://www.twitter.com/#!/groupon" style=3D"color:#0185C6; text=
+-decoration:none;" target=3D"_blank"><img alt=3D'Twitter' border=3D'0' heig=
+ht=3D'18' src=3D'http://s3.grouponcdn.com/email/images/Goods/twitter_green_=
+bg.jpg' style=3D'width:17px;height:18px;border:0px;vertical-align:middle;' =
+width=3D'17' /></a></td> <td align=3D"right" style=3D"width:17px;" valign=
+=3D"middle" width=3D"17px"><a href=3D"http://www.facebook.com/GrouponGoods"=
+ style=3D"color:#0185C6; text-decoration:none;" target=3D"_blank"><img alt=
+=3D"Facebook" border=3D"0" height=3D"18" src=3D"http://s3.grouponcdn.com/em=
+ail/images/Goods/facebook_green_bg.jpg" style=3D"width:17px;height:18px;bor=
+der:0px;vertical-align:middle;" width=3D"17" /></a></td> </tr> </table> </t=
+d> </tr> </table> </td> </tr> </table> </td> <td style=3D"width: 33%;">&nbs=
+p;</td> </tr> <tr> <td style=3D"width: 33%">&nbsp;</td> <td valign=3D"top" =
+align=3D"center"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-=
+family: Arial, Helvetica, sans-serif; font-size:14px; line-height:19px; col=
+or:#333; width: 600px; line-height:15px;" align=3D"center" valign=3D"top"> =
+<tr> <td style=3D"color:#fff; font-size: 10px; padding: 10px 0 10px 0; bord=
+er-bottom: 1px solid #dfdfdf; -webkit-text-size-adjust:none;" align=3D"cent=
+er">Delivered by Groupon Inc. 600 W. Chicago Avenue, Suite 400 Chicago, IL,=
+ 60654, USA</td> </tr> <tr> <td style=3D"color:#fff; font-size: 10px; paddi=
+ng: 10px 0 10px 0; -webkit-text-size-adjust:none;" align=3D"center"> You ar=
+e receiving this email because <a href=3D"#" style=3D"color: #FFFFFF; text-=
+decoration: none;">iharkness@manitoba-ehealth.ca</a> is signed up to receiv=
+e Groupon communications. If you wish to unsubscribe from future Groupon Go=
+ods emails, you can always unsubscribe with one <a href=3D"http://www.group=
+on.com/subscription_center/1ec2b043b669a94506bfbb1a5439cec0185663ea7165cb93=
+5e22cbd2511f7647/unsubscribe?from=3Dgoods&utm_source=3Dchannel_goods-deals&=
+utm_medium=3Demail&sid=3Dd3af3f52-c8cb-40b4-bda2-d68f165bec7f&division=3Dwi=
+nnipeg&user=3D1ec2b043b669a94506bfbb1a5439cec0185663ea7165cb935e22cbd2511f7=
+647&date=3D20130102&s=3Dfooter&c=3Dlink&d=3Dunsubscribe" style=3D"color:#FF=
+FFFF; text-decoration:underline; font-weight: normal;" target=3D"_blank">cl=
+ick</a>. If you'd like to modify your other email subscriptions, click <a h=
+ref=3D"https://www.groupon.com/subscription_center/1ec2b043b669a94506bfbb1a=
+5439cec0185663ea7165cb935e22cbd2511f7647?mobile=3Dfalse&utm_source=3Dchanne=
+l_goods-deals&utm_medium=3Demail&sid=3Dd3af3f52-c8cb-40b4-bda2-d68f165bec7f=
+&division=3Dwinnipeg&user=3D1ec2b043b669a94506bfbb1a5439cec0185663ea7165cb9=
+35e22cbd2511f7647&date=3D20130102&s=3Dfooter&c=3Dlink&d=3Dsubscription_cent=
+er" style=3D"color:#FFFFFF; text-decoration:underline; font-weight: normal;=
+" target=3D"_blank">here</a> to access your subscription center. Please don=
+'t reply to this email&#8212;there are better ways to get in touch with us,=
+ like renting the billboard outside our office or emailing customer service=
+ here.</td> </tr> <tr> <td style=3D"color:#fff; font-size: 10px; padding: 1=
+0px 0 10px 0; -webkit-text-size-adjust:none;" align=3D"center">If you are i=
+nterested in working with Groupon Goods, <a href=3D"https://www.grouponwork=
+s.com/get-featured?utm_source=3Dchannel_goods-deals&utm_medium=3Demail&sid=
+=3Dd3af3f52-c8cb-40b4-bda2-d68f165bec7f&division=3Dwinnipeg&user=3D1ec2b043=
+b669a94506bfbb1a5439cec0185663ea7165cb935e22cbd2511f7647&date=3D20130102&s=
+=3Dfooter&c=3Dlink&d=3DGroupon_Goods&utm_campaign=3Dgoods_010213" style=3D"=
+color:#FFFFFF; text-decoration:underline; font-weight: normal;" target=3D"_=
+blank">go here</a> for more information.</td> </tr> <tr> <td style=3D"font-=
+size: 10px; padding: 10px 0 30px 0; color:#dfdfdf;" align=3D"center">To pur=
+chase a deal listed in this e-mail, click the button next to that deal (e.g=
+..., "View This Deal" or "Details") to visit the page on the Groupon website =
+where the deal is available for purchase. Then, click the "Buy!" button on =
+that page and follow the instructions provided. Once you complete the purch=
+ase, you'll receive an e-mail confirmation containing a link to the page on=
+ the Groupon website where you can review your order details and track your=
+ package from your Groupon account. View our <a href=3D"http://www.groupon.=
+com/privacy?utm_source=3Dchannel_goods-deals&utm_medium=3Demail&sid=3Dd3af3=
+f52-c8cb-40b4-bda2-d68f165bec7f&division=3Dwinnipeg&user=3D1ec2b043b669a945=
+06bfbb1a5439cec0185663ea7165cb935e22cbd2511f7647&date=3D20130102&s=3Dfooter=
+&c=3Dlink&d=3Dprivacy_statement" style=3D"color:#dfdfdf; text-decoration:un=
+derline; font-weight:normal;" target=3D"_blank">Privacy Statement</a>.</td>=
+ </tr> </table> </td> <td style=3D"width: 33%;">&nbsp;</td> </tr> </table> =
+<img src =3D "http://www.groupon.com/analytic/track.gif?p=3D2&utm_source=3D=
+channel_goods-deals&utm_medium=3Demail&sid=3Dd3af3f52-c8cb-40b4-bda2-d68f16=
+5bec7f&division=3Dwinnipeg&user=3D1ec2b043b669a94506bfbb1a5439cec0185663ea7=
+165cb935e22cbd2511f7647&date=3D20130102" height=3D"1" width=3D"1" /></body>=
+ </html>
+------=_Part_265484327_538618153.1357151278087--
+
+------=_Part_265484326_1792945151.1357151278087--
+
+------=_Part_265484325_607795869.1357151278087--
+
+From MAILER-DAEMON Fri Jan  4 04:36:27 2013
