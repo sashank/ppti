@@ -128,7 +128,7 @@
     <orderEntry type="module-library">
       <library name="Maven: cisco.com.jfnr:jfnr:1.0-SNAPSHOT">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../jpir/target/jpir-1.0-SNAPSHOT.jar!/" />
+          <root url="jar://$USER_HOME$/Projects/jpir/target/jpir-1.0-SNAPSHOT.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
